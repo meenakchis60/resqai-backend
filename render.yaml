@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: resqai-backend
+    runtime: java
+    rootDir: resqai-backend/resqai-backend
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/resqai-backend-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
