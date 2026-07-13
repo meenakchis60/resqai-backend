@@ -1,7 +1,7 @@
 services:
   - type: web
     name: resqai-backend
-    rootDir: resqai-backend
+    rootDir: resqai-backend/resqai-backend
     buildCommand: ./mvnw clean package -DskipTests
     startCommand: java -Dserver.port=$PORT -jar target/resqai-backend-0.0.1-SNAPSHOT.jar
     envVars:
