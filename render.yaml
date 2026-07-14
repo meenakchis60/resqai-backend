@@ -1,16 +1,29 @@
+databases:
+  - name: resqai-db
+    databaseName: resqai
+    user: resqai
+    plan: free
+
 services:
   - type: web
     name: resqai-backend
     rootDir: resqai-backend/resqai-backend
     buildCommand: ./mvnw clean package -DskipTests
     startCommand: java -Dserver.port=$PORT -jar target/resqai-backend-0.0.1-SNAPSHOT.jar
+    healthCheckPath: /api/test
     envVars:
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: resqai-db
+          property: connectionString
       - key: DATABASE_USERNAME
-        sync: false
+        fromDatabase:
+          name: resqai-db
+          property: user
       - key: DATABASE_PASSWORD
-        sync: false
+        fromDatabase:
+          name: resqai-db
+          property: password
       - key: JWT_SECRET
         generateValue: true
       - key: GEMINI_API_KEY
