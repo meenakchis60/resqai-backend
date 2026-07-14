@@ -1,0 +1,10 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "cd resqai-backend/resqai-backend && chmod +x mvnw && ./mvnw clean package -DskipTests"
+  },
+  "deploy": {
+    "startCommand": "cd resqai-backend/resqai-backend && java -Dserver.port=$PORT -jar target/resqai-backend-0.0.1-SNAPSHOT.jar"
+  }
+}
